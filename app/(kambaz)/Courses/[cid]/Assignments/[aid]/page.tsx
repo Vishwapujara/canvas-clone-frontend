@@ -20,10 +20,8 @@ export default function Assignments({ params }: { params: Record<string, string>
                                     <br /><br />
                                     <input id="wd-name" /><br /><br />
 
-                                    <textarea id="wd-description" rows={10} cols={40} defaultValue="A1 - ENV + HTML">
-                                        The assignment is available online Submit a link to the landing page of
-                                        your Web application running on Vercle. The landing page should have included: Your name,
-                                        a link to your GitHub repository, and a link to your live application.
+                                    <textarea id="wd-description" rows={10} cols={40} defaultValue={"The assignment is available online Submit a link to the landing page of your Web application running on Vercle. The landing page should have included: Your name, a link to your GitHub repository, and a link to your live application."}>
+                                       
                                     </textarea>
                                     <br /><br />
 
