@@ -1,6 +1,14 @@
+'use client'; // <- Added: Ensures this component runs on client to avoid hydration errors
+
+import { useState } from 'react';
 import Navigation from "../Navigation";
+
 export default function Assignments({ params }: { params: Record<string, string> }) {
     const { cid } = params;
+
+    // Interactive states moved here to avoid hydration mismatch
+    const [search, setSearch] = useState("");
+
     return (
         <div id="wd-home">
             <h1><b>Course {cid}</b></h1>
@@ -12,19 +20,24 @@ export default function Assignments({ params }: { params: Record<string, string>
                             <Navigation cid={cid} />
                         </td>
                         <td valign="top" width="70%">
+                            {/* ====== Interactive Elements Start ====== */}
                             <div id="wd-assignments">
-                                <input placeholder="Search for Assignments"
-                                    id="wd-search-assignment" />
+                                <input
+                                    placeholder="Search for Assignments"
+                                    id="wd-search-assignment"
+                                    value={search} // <- Added: controlled input
+                                    onChange={(e) => setSearch(e.target.value)} // <- Added: update state
+                                />
                                 <button id="wd-add-assignment-group">+ Group</button>
                                 <button id="wd-add-assignment">+ Assignment</button>
                                 <h3 id="wd-assignments-title">
-                                    ASSIGNMENTS 40% of Total <button>+</button> </h3>
+                                    ASSIGNMENTS 40% of Total <button>+</button>
+                                </h3>
                                 <ul id="wd-assignment-list">
                                     <li className="wd-assignment-list-item1">
                                         <a href={`/Courses/${cid}/Assignments/${cid}`}
-                                            className="wd-assignment-link" >
+                                            className="wd-assignment-link">
                                             A1 - ENV + HTML
-
                                         </a>
                                         <br />
                                         Multiple Modules | <b>Not available until</b> May 6 at 12:00 AM |
@@ -34,7 +47,7 @@ export default function Assignments({ params }: { params: Record<string, string>
 
                                     <li className="wd-assignment-list-item2">
                                         <a href={`/Courses/${cid}/Assignments/${cid}`}
-                                            className="wd-assignment-link" >
+                                            className="wd-assignment-link">
                                             A2 - CSS + BOOTSTRAP
                                         </a>
                                         <br />
@@ -45,7 +58,7 @@ export default function Assignments({ params }: { params: Record<string, string>
 
                                     <li className="wd-assignment-list-item3">
                                         <a href={`/Courses/${cid}/Assignments/${cid}`}
-                                            className="wd-assignment-link" >
+                                            className="wd-assignment-link">
                                             A3 - JAVASCRIPT + REACT
                                         </a>
                                         <br />
@@ -54,6 +67,7 @@ export default function Assignments({ params }: { params: Record<string, string>
                                     </li>
                                 </ul>
                             </div>
+                            {/* ====== Interactive Elements End ====== */}
                         </td>
                     </tr>
                 </tbody>
@@ -61,4 +75,3 @@ export default function Assignments({ params }: { params: Record<string, string>
         </div>
     );
 }
-
