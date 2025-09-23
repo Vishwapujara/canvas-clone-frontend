@@ -191,23 +191,26 @@ export default function Lab1() {
 
           <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" />
           <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
-          //single option selected
+
+          {/*single option selected*/}
           <h4 id="wd-dropdowns">Dropdowns</h4>
 
           <h5>Select one</h5>
-          <label htmlFor="wd-select-one-genre"> Favorite movie genre: </label><br />
+          <label htmlFor="wd-select-one-genre" defaultValue="SCIFI"> Favorite movie genre: </label><br />
           <select id="wd-select-one-genre">
             <option value="COMEDY">Comedy</option>
             <option value="DRAMA">Drama</option>
-            <option selected value="SCIFI">
+            <option value="SCIFI" >
               Science Fiction</option>
             <option value="FANTASY">Fantasy</option>
           </select>
 
-          //multiple options selected
+
+          {/*multiple options selected*/}
+          
           <h5>Select many</h5>
           <label htmlFor="wd-select-many-genre"> Favorite movie genres: </label><br />
-          <select multiple id="wd-select-many-genre">
+          <select multiple id="wd-select-many-genre" defaultValue={["COMEDY", "SCIFI"]}>
             <option value="COMEDY" selected> Comedy          </option>
             <option value="DRAMA">           Drama           </option>
             <option value="SCIFI" selected> Science Fiction </option>
@@ -241,7 +244,7 @@ export default function Lab1() {
 
           <h4>Anchor tag</h4>
           Please
-          <a href="https://www.lipsum.com" id="wd-lipsum">click here</a>
+          <a href="https://www.lipsum.com" id="wd-lipsum">click here </a>
           to get dummy text<br />
 
         </form>
