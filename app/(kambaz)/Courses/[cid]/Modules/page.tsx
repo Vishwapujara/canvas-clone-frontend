@@ -1,9 +1,9 @@
 import Modules from "./Modules";
 import Navigation from "../Navigation";
-export default function Home({ params }: { params: { cid: string } }) {
+export default function Module({ params }: { params: { cid: string } }) {
   const { cid } = params;
   return (
-    <div id="wd-home">
+    <div id="wd-modules">
       <h1><b>Course {cid}</b></h1>
       <hr />
       <table>

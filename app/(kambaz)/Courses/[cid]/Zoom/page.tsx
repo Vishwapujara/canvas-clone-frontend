@@ -1,8 +1,8 @@
 import Navigation from "../Navigation";
-export default function Piazza({ params }: { params: { cid: string } }) {
+export default function Zoom({ params }: { params: { cid: string } }) {
   const { cid } = params;
   return (
-    <div id="wd-piazza">
+    <div id="wd-zoom">
       <h1><b>Course {cid}</b></h1>
       <hr />
       <table>
@@ -12,7 +12,7 @@ export default function Piazza({ params }: { params: { cid: string } }) {
               <Navigation cid={cid} />
             </td>
             <td valign="top" width="100%">
-                <h1>Piazza Integration Coming Soon!</h1>
+                <h1>Zoom Integration Coming Soon!</h1>
             </td>
           </tr>
         </tbody>
