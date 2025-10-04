@@ -1,4 +1,4 @@
-import Modules from "../Modules/page";
+import Modules from "../Modules/Modules";
 import CourseStatus from "./Status";
 import Navigation from "../Navigation";
 export default function Home({ params }: { params: { cid: string } }) {
