@@ -11,9 +11,17 @@ import Zindex from "./Zindex";
 import Float from "./Float";
 import Grid from "./GridLayout";
 import Flex from "./Flex";
+import ReactIconsSampler from "./ReactIcons";
+import Boot from "./BootstrapGrids";
+import ScreenSizeLabel from "./ScreenSizeLabel";
+import BootstrapTables from "./BootstrapTables";
+import BootstrapLists from "./BootstrapLists";
+import BootstrapNavigation from "./BootstrapNavigation";
+import BootstrapForms from "./BootstrapForms";
+import { Container } from "react-bootstrap";
 export default function Lab2() {
   return (
-    <div>
+    <Container>
       <h2>Lab 2 - Cascading Style Sheets</h2>
       <h3>Styling with the STYLE attribute</h3>
       <p id="wd-css-style-attribute">
@@ -35,7 +43,7 @@ export default function Lab2() {
         <h3>Class selectors</h3>
 
         <p className="wd-class-selector">
-Instead of using IDs to refer to elements, you can use an element&apos;s
+          Instead of using IDs to refer to elements, you can use an element&apos;s
           CLASS attribute        </p>
 
         <h4 className="wd-class-selector">
@@ -49,7 +57,7 @@ Instead of using IDs to refer to elements, you can use an element&apos;s
             Selectors can be combined to refer elements in particular
             places in the document
             <p className="wd-selector-3">
-This paragraph&apos;s red background is referenced as              <br />
+              This paragraph&apos;s red background is referenced as              <br />
               .selector-2 .selector3<br />
               meaning the descendant of some ancestor.<br />
               <span className="wd-selector-4">
@@ -100,6 +108,27 @@ This paragraph&apos;s red background is referenced as              <br />
       <div id="wd-flexbox">
         <Flex />
       </div>
-    </div>
+      <div id="wd-react-icons">
+        <ReactIconsSampler />
+      </div>
+      <div>
+        <Boot />
+      </div>
+      <div>
+        <ScreenSizeLabel />
+      </div>
+      <div>
+        <BootstrapTables />
+      </div>
+      <div>
+        <BootstrapLists />
+      </div>
+      <div>
+        <BootstrapForms />
+      </div>
+      <div>
+        <BootstrapNavigation />
+      </div>
+    </Container>
   );
 }

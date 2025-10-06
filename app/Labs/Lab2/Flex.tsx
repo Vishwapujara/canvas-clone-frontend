@@ -15,6 +15,5 @@ export default function Flex() {
                 </div>
             </div>
         </div>
-
     );
 }

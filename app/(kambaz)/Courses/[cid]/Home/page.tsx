@@ -1,28 +1,62 @@
-import Modules from "../Modules/Modules";
+// import Modules from "../Modules/Modules";
+// import CourseStatus from "./Status";
+// import Navigation from "../Navigation";
+
+// export default function Home({ params }: { params: { cid: string } }) {
+//   const { cid } = params;
+//   return (
+//     <div id="wd-home" className="container-fluid mt-3">
+//       <h1><b>Course {cid}</b></h1>
+//       <hr />
+
+//       {/* Flexbox layout instead of <table> */}
+//       <div className="d-flex">
+//         {/* Left Sidebar: Navigation */}
+//         <div className="d-none d-md-block me-3" style={{ width: "180px" }}>
+//           <Navigation cid={cid} />
+//         </div>
+
+//         {/* Main Content: Modules */}
+//         <div className="flex-fill me-3">
+//           <Modules />
+//         </div>
+
+//         {/* Right Sidebar: Course Status (hidden on small screens) */}
+//         <div className="d-none d-lg-block ms-3" style={{ width: "180px" }}>
+//           <CourseStatus />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
+
+'use client';
+
+import { use } from "react";
+import Modules from "../Modules/page";
 import CourseStatus from "./Status";
-import Navigation from "../Navigation";
-export default function Home({ params }: { params: { cid: string } }) {
-  const { cid } = params;
+
+export default function Home({ params }: { params: Promise<{ cid: string }> }) {
+  const { cid } = use(params);
   return (
     <div id="wd-home">
-      <h1><b>Course {cid}</b></h1>
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2>Course {cid}</h2>
+      </div>
+
       <hr />
-      <table>
-        <tbody>
-          <tr>
-            <td valign="top" width="180"> 
-              <Navigation cid={cid} />
-            </td>
-            <td valign="top" width="70%">
-              <Modules />
-            </td>
-            <td valign="top" width="180">
-              <CourseStatus />
-            </td>
-          </tr>
-        </tbody>
-      </table>
+      {/* Flexbox layout for Modules and Status */}
+      <div className="d-flex">
+        {/* Main Content: Modules - Takes most space */}
+        <div className="flex-fill me-4">
+          <Modules />
+        </div>
+
+        {/* Right Sidebar: Course Status (hidden on medium and smaller screens) */}
+        <div className="d-none d-xl-block">
+          <CourseStatus />
+        </div>
+      </div>
     </div>
   );
 }
-

@@ -1,7 +1,11 @@
+import { Nav, NavItem, NavLink } from "react-bootstrap";
 import Link from "next/link";
 export default function TOC() {
- return (
-   <ul>
+  return (
+    <div>
+
+
+      {/* <ul>
      <li>
        <Link href="/Labs" id="wd-lab1-link">
          Home </Link>
@@ -22,5 +26,30 @@ export default function TOC() {
         <Link href="/" id="wd-kambaz-link">
         Kambaz</Link>  
       </li>
-   </ul>
-);}
+   </ul> */}
+
+      <div>
+        <Nav variant="pills">
+          <NavItem>
+            <NavLink href="/Labs" as={Link}>Labs</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/Labs/Lab1" as={Link}>Lab 1</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/Labs/Lab2" as={Link}>Lab 2</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/Labs/Lab3" as={Link}>Lab 3</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="/" as={Link}>Kambaz</NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink href="https://github.com/Vishwapujara">My GitHub</NavLink>
+          </NavItem>
+        </Nav>
+      </div>
+    </div>
+  );
+}

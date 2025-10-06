@@ -1,0 +1,175 @@
+/* Complete styles.css for Kambaz */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body * {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Kambaz Navigation - Fixed sidebar */
+#wd-kambaz-navigation {
+  width: 120px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+}
+
+/* Main content offset for Kambaz nav only */
+.wd-main-content-offset {
+  margin-left: 140px;
+}
+
+/* Course Navigation - should be inside course pages only */
+#wd-courses-navigation {
+  width: 180px;
+  position: fixed;
+  left: 10px; /* Starts where Kambaz nav ends */
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* Course page content offset (accounting for both navs) */
+#wd-courses-navigation + * {
+  margin-left: 250px; /* Additional offset for course nav */
+}
+
+/* Course Navigation styling to match Canvas */
+.list-group.wd {
+  margin: 0;
+  padding: 0;
+}
+
+.list-group.wd > .list-group-item {
+  cursor: pointer;
+  padding: 15px 20px;
+  border: none;
+  border-left: 3px solid transparent;
+}
+
+.list-group.wd > .list-group-item.active {
+  color: black;
+  background-color: white;
+  border-left: 3px solid black !important;
+}
+
+.list-group.wd > .list-group-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Bootstrap overrides for secondary button and background */
+.btn-secondary {
+  --bs-btn-color: #000 !important;
+  --bs-btn-bg: #c7cdd1 !important;
+  --bs-btn-border-color: #c7cdd1 !important;
+  --bs-btn-hover-color: #fff !important;
+}
+
+.bg-secondary {
+  --bs-secondary-rgb: 199, 205, 209;
+}
+
+/* Module styling */
+.list-group-item {
+  --bs-list-group-border-color: gray;
+}
+
+.border-gray {
+  border-color: gray !important;
+}
+
+.wd-lesson {
+  border-left: 3px solid green !important;
+}
+
+/* Mobile responsive */
+@media (max-width: 767px) {
+  .wd-main-content-offset {
+    margin-left: 0;
+  }
+}
+  
+  #wd-courses-navigation {
+  width: 250px;
+  position: fixed;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  background-color: white;  /* Make sure this is here */
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* Account Navigation - same styling as Course Navigation */
+#wd-account-navigation {
+  width: 250px;
+  position: fixed;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  z-index: 100;
+}
+
+/* Fix the selector - remove the .wd right after the ID */
+#wd-account-navigation > .list-group-item.active {
+  color: black !important;
+  background-color: white !important;
+  border-left: 3px solid black !important;
+}
+
+#wd-account-navigation > .list-group-item {
+  cursor: pointer;
+  padding: 15px 20px;
+  border: none;
+  border-left: 3px solid transparent;
+}
+
+#wd-account-navigation > .list-group-item:hover {
+  background-color: #f5f5f5;
+}
+
+/* Course Navigation styling */
+.list-group.wd > .list-group-item {
+  cursor: pointer;
+  padding: 15px 20px;
+  border: none;
+  border-left: 3px solid transparent;
+  background-color: white; /* default background */
+}
+
+/* Active state - custom override */
+.list-group.wd > .list-group-item.wd-active {
+  color: black !important;
+  background-color: white !important;
+  border-left: 3px solid black !important;
+}
+
+/* Inactive links should look red */
+.list-group.wd > .list-group-item {
+  color: red;
+  text-decoration: none;
+}
+
+/* Hover effect */
+.list-group.wd > .list-group-item:hover {
+  background-color: #f5f5f5;
+  color: black;
+}
+
+.list-group.wd > .list-group-item.wd-active {
+color: black;
+background-color: white;
+border-left: 3px solid black !important;
+}
