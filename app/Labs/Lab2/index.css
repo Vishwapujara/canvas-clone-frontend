@@ -151,14 +151,6 @@ p#wd-id-selector-2 {
 }
 
 /* Floating and clearing*/
-.wd-float-right {
-   float: right;
-   height: 100px;
-}
-
-.wd-float-done {
-   clear: both;
-}
 .wd-float-left {
    float: left;
    height: 100px;

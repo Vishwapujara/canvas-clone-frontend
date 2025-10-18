@@ -24,11 +24,11 @@ body * {
   margin-left: 140px;
 }
 
-/* Course Navigation - should be inside course pages only */
+/* Course Navigation - positioned right after Kambaz nav */
 #wd-courses-navigation {
-  width: 180px;
+  width: 250px;
   position: fixed;
-  left: 10px; /* Starts where Kambaz nav ends */
+  left: 120px; /* Sits right next to Kambaz nav (no gap) */
   top: 0;
   bottom: 0;
   background-color: white;
@@ -37,12 +37,7 @@ body * {
   z-index: 100;
 }
 
-/* Course page content offset (accounting for both navs) */
-#wd-courses-navigation + * {
-  margin-left: 250px; /* Additional offset for course nav */
-}
-
-/* Course Navigation styling to match Canvas */
+/* Course Navigation styling */
 .list-group.wd {
   margin: 0;
   padding: 0;
@@ -53,15 +48,52 @@ body * {
   padding: 15px 20px;
   border: none;
   border-left: 3px solid transparent;
+  background-color: white;
+  color: red; /* Inactive links are red */
+  text-decoration: none;
 }
 
-.list-group.wd > .list-group-item.active {
-  color: black;
-  background-color: white;
+/* Active state */
+.list-group.wd > .list-group-item.wd-active {
+  color: black !important;
+  background-color: white !important;
   border-left: 3px solid black !important;
 }
 
+/* Hover effect */
 .list-group.wd > .list-group-item:hover {
+  background-color: #f5f5f5;
+  color: black;
+}
+
+/* Account Navigation - same styling as Course Navigation */
+#wd-account-navigation {
+  width: 250px;
+  position: fixed;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  background-color: white;
+  border-right: 1px solid #dee2e6;
+  overflow-y: auto;
+  z-index: 100;
+  padding: 10px;
+}
+
+#wd-account-navigation > .list-group-item {
+  cursor: pointer;
+  padding: 15px 20px;
+  border: none;
+  border-left: 3px solid transparent;
+}
+
+#wd-account-navigation > .list-group-item.active {
+  color: black !important;
+  background-color: white !important;
+  border-left: 3px solid black !important;
+}
+
+#wd-account-navigation > .list-group-item:hover {
   background-color: #f5f5f5;
 }
 
@@ -90,86 +122,57 @@ body * {
   border-left: 3px solid green !important;
 }
 
+/* Sidebar */
+.kambaz-sidebar {
+  width: 120px;
+  background: black;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 1000;
+  transition: transform 0.3s ease-in-out;
+}
+
 /* Mobile responsive */
 @media (max-width: 767px) {
   .wd-main-content-offset {
     margin-left: 0;
   }
-}
-  
-  #wd-courses-navigation {
-  width: 250px;
-  position: fixed;
-  left: 120px;
-  top: 0;
-  bottom: 0;
-  background-color: white;  /* Make sure this is here */
-  border-right: 1px solid #dee2e6;
-  overflow-y: auto;
-  z-index: 100;
-}
 
-/* Account Navigation - same styling as Course Navigation */
-#wd-account-navigation {
-  width: 250px;
-  position: fixed;
-  left: 120px;
-  top: 0;
-  bottom: 0;
-  background-color: white;
-  border-right: 1px solid #dee2e6;
-  overflow-y: auto;
-  z-index: 100;
-}
+  /* Sidebar hidden by default */
+  .kambaz-sidebar {
+    transform: translateX(-100%);
+  }
 
-/* Fix the selector - remove the .wd right after the ID */
-#wd-account-navigation > .list-group-item.active {
-  color: black !important;
-  background-color: white !important;
-  border-left: 3px solid black !important;
-}
+  /* Sidebar shown when .open is applied */
+  .kambaz-sidebar.open {
+    transform: translateX(0);
+  }
 
-#wd-account-navigation > .list-group-item {
-  cursor: pointer;
-  padding: 15px 20px;
-  border: none;
-  border-left: 3px solid transparent;
-}
+  /* Hamburger button */
+  .hamburger-btn {
+    position: fixed;
+    top: 15px;
+    left: 15px;
+    background: white;
+    border: none;
+    color: black;
+    z-index: 1100;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
 
-#wd-account-navigation > .list-group-item:hover {
-  background-color: #f5f5f5;
-}
-
-/* Course Navigation styling */
-.list-group.wd > .list-group-item {
-  cursor: pointer;
-  padding: 15px 20px;
-  border: none;
-  border-left: 3px solid transparent;
-  background-color: white; /* default background */
-}
-
-/* Active state - custom override */
-.list-group.wd > .list-group-item.wd-active {
-  color: black !important;
-  background-color: white !important;
-  border-left: 3px solid black !important;
-}
-
-/* Inactive links should look red */
-.list-group.wd > .list-group-item {
-  color: red;
-  text-decoration: none;
-}
-
-/* Hover effect */
-.list-group.wd > .list-group-item:hover {
-  background-color: #f5f5f5;
-  color: black;
-}
-
-.list-group.wd > .list-group-item.wd-active {
-color: black;
-background-color: white;
-border-left: 3px solid black !important;
+  /* Close button inside sidebar */
+  .close-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: transparent;
+    border: none;
+    color: white;
+    z-index: 1101;
+    cursor: pointer;
+  }
 }

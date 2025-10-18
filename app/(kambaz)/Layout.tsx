@@ -5,9 +5,9 @@ export default function KambazLayout({ children }: Readonly<{ children: ReactNod
   return (
     <div id="wd-kambaz">
       <div className="d-flex">
-        <div>
+        {/* <div>
           <KambazNavigation />
-        </div>
+        </div> */}
         <div className="wd-main-content-offset">
           {children}
         </div>
