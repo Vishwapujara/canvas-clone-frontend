@@ -1,4 +1,5 @@
 export default function VariableTypes() {
+  /* eslint-disable prefer-const */
   let numberVariable = 123;
   let floatingPointNumber = 234.345;
   let stringVariable = 'Hello World!';
