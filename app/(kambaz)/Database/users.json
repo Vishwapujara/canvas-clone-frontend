@@ -5,5 +5,42 @@
   { "_id": "456", "firstName": "Natasha", "lastName": "Romanoff",  "loginId": "001234564S", "section": "S101", "role": "TA",         "lastActivity": "2020-11-05", "totalActivity": "13:23:34" },
   { "_id": "567", "firstName": "Thor",    "lastName": "Odinson",   "loginId": "001234565S", "section": "S101", "role": "STUDENT",    "lastActivity": "2020-12-01", "totalActivity": "11:22:33" },
   { "_id": "789", "firstName": "Bruce",   "lastName": "Banner",    "loginId": "001234566S", "section": "S101", "role": "STUDENT",    "lastActivity": "2020-12-01", "totalActivity": "22:33:44" },
-  { "_id": "890", "firstName": "Alice",   "lastName": "Liddell",   "loginId": "001234567S", "section": "S102", "role": "INSTRUCTOR", "lastActivity": "2021-01-05", "totalActivity": "30:00:00" }
+  { "_id": "890", "firstName": "Alice",   "lastName": "Liddell",   "loginId": "001234567S", "section": "S102", "role": "INSTRUCTOR", "lastActivity": "2021-01-05", "totalActivity": "30:00:00" },
+
+  { "_id": "1001", "firstName": "Evan",   "lastName": "Wright",   "loginId": "001100101I", "section": "F001", "role": "INSTRUCTOR", "lastActivity": "2025-01-01", "totalActivity": "00:00:00" }, 
+  { "_id": "1002", "firstName": "Maya",   "lastName": "Singh",    "loginId": "001100102I", "section": "F001", "role": "INSTRUCTOR", "lastActivity": "2025-01-02", "totalActivity": "00:00:00" }, 
+  { "_id": "1003", "firstName": "Oliver", "lastName": "Ng",       "loginId": "001100103I", "section": "F001", "role": "INSTRUCTOR", "lastActivity": "2025-01-03", "totalActivity": "00:00:00" }, 
+  { "_id": "1004", "firstName": "Sara",   "lastName": "Khan",     "loginId": "001100104I", "section": "F001", "role": "INSTRUCTOR", "lastActivity": "2025-01-04", "totalActivity": "00:00:00" }, 
+
+  { "_id": "1101", "firstName": "Liam",   "lastName": "Brown",    "loginId": "001110101T", "section": "TA01", "role": "TA", "lastActivity": "2025-02-01", "totalActivity": "01:00:00" }, 
+  { "_id": "1102", "firstName": "Nora",   "lastName": "Patel",    "loginId": "001110102T", "section": "TA02", "role": "TA", "lastActivity": "2025-02-02", "totalActivity": "01:30:00" }, 
+
+  { "_id": "2001", "firstName": "Student1", "lastName": "A", "loginId": "002001S", "section": "S201", "role": "STUDENT", "lastActivity": "2025-03-01", "totalActivity": "02:10:00" },
+  { "_id": "2002", "firstName": "Student2", "lastName": "B", "loginId": "002002S", "section": "S201", "role": "STUDENT", "lastActivity": "2025-03-02", "totalActivity": "01:05:00" },
+  { "_id": "2003", "firstName": "Student3", "lastName": "C", "loginId": "002003S", "section": "S201", "role": "STUDENT", "lastActivity": "2025-03-03", "totalActivity": "00:50:00" },
+  { "_id": "2004", "firstName": "Student4", "lastName": "D", "loginId": "002004S", "section": "S201", "role": "STUDENT", "lastActivity": "2025-03-04", "totalActivity": "03:20:00" },
+  { "_id": "2005", "firstName": "Student5", "lastName": "E", "loginId": "002005S", "section": "S201", "role": "STUDENT", "lastActivity": "2025-03-05", "totalActivity": "00:30:00" },
+
+  { "_id": "3001", "firstName": "DS_Student1", "lastName": "A", "loginId": "003001S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-01", "totalActivity": "00:20:00" },
+  { "_id": "3002", "firstName": "DS_Student2", "lastName": "B", "loginId": "003002S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-02", "totalActivity": "01:10:00" },
+  { "_id": "3003", "firstName": "DS_Student3", "lastName": "C", "loginId": "003003S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-03", "totalActivity": "00:40:00" },
+  { "_id": "3004", "firstName": "DS_Student4", "lastName": "D", "loginId": "003004S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-04", "totalActivity": "02:00:00" },
+  { "_id": "3005", "firstName": "DS_Student5", "lastName": "E", "loginId": "003005S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-05", "totalActivity": "00:25:00" },
+  { "_id": "3006", "firstName": "DS_Student6", "lastName": "F", "loginId": "003006S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-06", "totalActivity": "00:35:00" },
+  { "_id": "3007", "firstName": "DS_Student7", "lastName": "G", "loginId": "003007S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-07", "totalActivity": "00:45:00" },
+  { "_id": "3008", "firstName": "DS_Student8", "lastName": "H", "loginId": "003008S", "section": "S301", "role": "STUDENT", "lastActivity": "2025-03-08", "totalActivity": "01:15:00" },
+
+  { "_id": "4001", "firstName": "ML_Student1", "lastName": "A", "loginId": "004001S", "section": "S401", "role": "STUDENT", "lastActivity": "2025-03-01", "totalActivity": "00:55:00" },
+  { "_id": "4002", "firstName": "ML_Student2", "lastName": "B", "loginId": "004002S", "section": "S401", "role": "STUDENT", "lastActivity": "2025-03-02", "totalActivity": "00:35:00" },
+  { "_id": "4003", "firstName": "ML_Student3", "lastName": "C", "loginId": "004003S", "section": "S401", "role": "STUDENT", "lastActivity": "2025-03-03", "totalActivity": "01:45:00" },
+
+  { "_id": "5001", "firstName": "DB_Student1", "lastName": "A", "loginId": "005001S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-01", "totalActivity": "00:20:00" },
+  { "_id": "5002", "firstName": "DB_Student2", "lastName": "B", "loginId": "005002S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-02", "totalActivity": "00:30:00" },
+  { "_id": "5003", "firstName": "DB_Student3", "lastName": "C", "loginId": "005003S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-03", "totalActivity": "00:40:00" },
+  { "_id": "5004", "firstName": "DB_Student4", "lastName": "D", "loginId": "005004S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-04", "totalActivity": "00:50:00" },
+  { "_id": "5005", "firstName": "DB_Student5", "lastName": "E", "loginId": "005005S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-05", "totalActivity": "00:35:00" },
+  { "_id": "5006", "firstName": "DB_Student6", "lastName": "F", "loginId": "005006S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-06", "totalActivity": "01:05:00" },
+  { "_id": "5007", "firstName": "DB_Student7", "lastName": "G", "loginId": "005007S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-07", "totalActivity": "00:15:00" },
+  { "_id": "5008", "firstName": "DB_Student8", "lastName": "H", "loginId": "005008S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-08", "totalActivity": "00:25:00" },
+  { "_id": "5009", "firstName": "DB_Student9", "lastName": "I", "loginId": "005009S", "section": "S501", "role": "STUDENT", "lastActivity": "2025-03-09", "totalActivity": "02:10:00" }
 ]
