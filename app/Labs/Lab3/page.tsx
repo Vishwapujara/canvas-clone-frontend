@@ -38,7 +38,7 @@ export default function Lab3() {
   return (
     <div>
       <h2>Lab 3</h2>
-      <h2>Java Script</h2>
+      <h3>Java Script</h3>
       <hr />
       <VariablesAndConstants />
       <VariableTypes />

@@ -8,41 +8,46 @@
 //    </div>
 // );}
 
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useSelector } from "react-redux";
+import type { RootState } from "../store";
 
 interface AccountNavigationProps {
-  activePage?: string;  // Only this prop
+  activePage?: string;
 }
 
-export default function AccountNavigation({ activePage = "Signin" }: AccountNavigationProps) {
-   const getItemClass = (page: string) => {
-    const isActive = activePage === page;
+export default function AccountNavigation({ activePage }: AccountNavigationProps) {
+  const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+  const pathname = usePathname();
+
+  const links = currentUser ? ["Profile"] : ["Signin", "Signup"];
+
+  const getItemClass = (page: string) => {
+    const name = page.toLowerCase();
+    const isActive = activePage ? activePage === page : pathname?.endsWith(name);
     return `list-group-item border-0 ${isActive ? "wd-active text-black border-start border-4 border-black" : "text-danger"}`;
   };
 
   return (
     <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
-      <Link 
-        href="/Account/Signin" 
-        id="wd-account-signin-link"
-        className={getItemClass("Signin")}
-      >
-        Signin
-      </Link>
-      <Link 
-        href="/Account/Signup" 
-        id="wd-account-signup-link"
-        className={getItemClass("Signup")}
-      >
-        Signup
-      </Link>
-      <Link 
-        href="/Account/Profile" 
-        id="wd-account-profile-link"
-        className={getItemClass("Profile")}
-      >
-        Profile
-      </Link>
+      {links.includes("Signin") && (
+        <Link href="/Account/Signin" id="wd-account-signin-link" className={getItemClass("Signin")}>
+          Signin
+        </Link>
+      )}
+      {links.includes("Signup") && (
+        <Link href="/Account/Signup" id="wd-account-signup-link" className={getItemClass("Signup")}>
+          Signup
+        </Link>
+      )}
+      {links.includes("Profile") && (
+        <Link href="/Account/Profile" id="wd-account-profile-link" className={getItemClass("Profile")}>
+          Profile
+        </Link>
+      )}
     </div>
   );
 }

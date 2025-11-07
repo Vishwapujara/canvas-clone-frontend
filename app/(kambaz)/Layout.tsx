@@ -1,24 +1,27 @@
+"use client";
+
 import { ReactNode } from "react";
 import KambazNavigation from "./Navigation";
-import "./KambazNavigation.css";  // Import navigation CSS
-import "./styles.css";             // Import general styles
+import "./KambazNavigation.css";
+import "./styles.css";
+import Providers from "./providers";
 
-export const metadata = {
-  title: "Kambaz",
-  description: "Learning Management System",
-};
+// export const metadata = {
+//   title: "Kambaz",
+//   description: "Learning Management System",
+// };
 
 export default function KambazLayout({ 
   children 
 }: Readonly<{ children: ReactNode }>) {
   return (
-    <>
+    <Providers>
       <KambazNavigation />
       <div id="wd-kambaz">
-        <div className="wd-main-content-offset">
+        <div>
           {children}
         </div>
       </div>
-    </>
+    </Providers>
   );
 }

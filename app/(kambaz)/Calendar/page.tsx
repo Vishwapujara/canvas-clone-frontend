@@ -31,7 +31,6 @@ export default function Calendar({ children }: Readonly<{ children: ReactNode }>
     <div id="wd-kambaz-calendar">
       <div className="d-flex">
         <div className="d-none d-md-block">
-          <KambazNavigation />
         </div>
         <div className="wd-main-content-offset">
           <br />

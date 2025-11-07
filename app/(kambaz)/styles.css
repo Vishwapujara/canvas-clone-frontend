@@ -10,18 +10,22 @@ body * {
 }
 
 /* Account Navigation - positioned right after Kambaz nav (120px wide) */
-/* #wd-account-navigation {
+ #wd-account-navigation {
+/*
+#wd-account-navigation {
   width: 240px;
   position: fixed;
   left: 240px;
   top: 0;
   bottom: 0;
   background-color: white;
-  border-right: 1px solid #dee2e6;
+  /* remove the right border so course nav doesn't show a grey divider */
+  border-right: none;
   overflow-y: auto;
   z-index: 999;
   padding: 10px;
-} */
+}
+
 
 #wd-account-navigation>.list-group-item {
   cursor: pointer;
@@ -56,17 +60,19 @@ body * {
   width: 100%;
 }
 
-/* Course Navigation - positioned right after Kambaz nav */
+/* Course Navigation - positioned right after Kambaz nav
+   NOTE: changed to participate in document flow (position: relative)
+   so the navigation appears below the page header/breadcrumb instead
+   of being fixed at the top and overlapping header content. */
 #wd-courses-navigation {
-  width: 250px;
-  position: fixed;
-  left: 120px;
-  top: 0;
-  bottom: 0;
+  width: 140px; /* match Kambaz sidebar width */
+  position: relative; /* was fixed */
+  /* keep it visually separated but flow with the page */
   background-color: white;
-  border-right: 1px solid #dee2e6;
+  /* remove the grey divider on the right */
+  border-right: none;
   overflow-y: auto;
-  z-index: 999;
+  z-index: 1;
 }
 
 /* Course Navigation styling */

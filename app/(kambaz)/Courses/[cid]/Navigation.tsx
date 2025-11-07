@@ -14,11 +14,11 @@ export default function CourseNavigation({ cid }: CourseNavigationProps) {
   const links = ["Home", "Modules", "Piazza", "Zoom", "Assignments", "Quizzes", "Grades", "People"];
 
   return (
-    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-courses-navigation" className="wd list-group fs-5 rounded-0" style={{ width: 140 }}>
       {links.map((label) => {
         // build href (Home still uses /Home route; Dashboard/other code may consider /Courses/:cid as Home too)
         const href = `/Courses/${cid}/${label}`;
-        // Treat "Home" as active for both /Courses/:cid and /Courses/:cid/Home
+        // Treat "Home" as active for both /Courses/:cid and /Courses/${cid}/Home
         const isActive =
           label === "Home"
             ? pathname === `/Courses/${cid}` || pathname.startsWith(`/Courses/${cid}/Home`)
