@@ -8,6 +8,7 @@ import { setCurrentUser } from "../Account/reducer";
 import { enrollUser, unenrollUser } from "../Courses/Enrollments/reducer";
 import { useRouter } from "next/navigation";
 import type { RootState } from "../store";
+import KambazNavigation from "../Navigation";
 
 export default function DashboardClient() {
   const [isMounted, setIsMounted] = useState(false);
@@ -148,7 +149,7 @@ function DashboardContent({
       <hr />
 
       <div id="wd-dashboard-courses" className="mb-5">
-        <Row xs={1} md={2} lg={3} xl={4} xxl={5} className="g-4">
+        <div className="row g-4">
           {(() => {
             if (!currentUser) return null;
             const role = (currentUser.role || "").toUpperCase();
@@ -161,13 +162,15 @@ function DashboardContent({
               );
             }
             return displayed.map((c: any) => (
-              <Col key={c._id} className="wd-dashboard-course" style={{ width: "300px" }}>
-                <Card className="h-100">
-                  <Card.Img src={c.image ?? "/images/reactjs.jpg"} variant="top" width="100%" height={160} />
-                  <Card.Body className="card-body">
-                    <Card.Title className="wd-dashboard-course-title text-nowrap overflow-hidden">{c.name}</Card.Title>
-                    <Card.Text className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>{c.description}</Card.Text>
-                    <Button variant="primary" onClick={(e) => {
+              // render as requested: div with class "wd-dashboard-course col"
+              <div key={c._id} className="wd-dashboard-course col" style={{ width: "300px" }}>
+                {/* ...reuse existing card content ... */}
+                <div className="card h-100">
+                  <img src={c.image ?? "/images/reactjs.jpg"} className="card-img-top" alt={c.name} style={{ height: 160, objectFit: "cover" }} />
+                  <div className="card-body">
+                    <h5 className="wd-dashboard-course-title text-nowrap overflow-hidden">{c.name}</h5>
+                    <p className="wd-dashboard-course-description overflow-hidden" style={{ height: "100px" }}>{c.description}</p>
+                    <button className="btn btn-primary" onClick={(e) => {
                       e.preventDefault();
                       const enrolled = enrollments.some((en: any) => en.user === currentUser._id && en.course === c._id);
                       if (enrolled) {
@@ -175,31 +178,28 @@ function DashboardContent({
                       } else {
                         alert('You are not enrolled in this course.');
                       }
-                    }}> Go </Button>
-                  </Card.Body>
-                  <Card.Footer className="d-flex justify-content-end gap-2">
-                    {currentUser && (
-                      (() => {
-                        const enrolled = enrollments.some((en: any) => en.user === currentUser._id && en.course === c._id);
-                        if (enrolled) {
-                          return <Button variant="outline-danger" size="sm" onClick={(ev) => { ev.preventDefault(); dispatch(unenrollUser({ user: currentUser._id, course: c._id })); }} id={`wd-unenroll-${c._id}`}>Unenroll</Button>;
-                        }
-                        return <Button variant="success" size="sm" onClick={(ev) => { ev.preventDefault(); dispatch(enrollUser({ user: currentUser._id, course: c._id })); }} id={`wd-enroll-${c._id}`}>Enroll</Button>;
-                      })()
-                    )}
-
+                    }}>Go</button>
+                  </div>
+                  <div className="card-footer d-flex justify-content-end gap-2">
+                    {currentUser && (() => {
+                      const enrolled = enrollments.some((en: any) => en.user === currentUser._id && en.course === c._id);
+                      if (enrolled) {
+                        return <button className="btn btn-outline-danger btn-sm" onClick={(ev) => { ev.preventDefault(); dispatch(unenrollUser({ user: currentUser._id, course: c._id })); }} id={`wd-unenroll-${c._id}`}>Unenroll</button>;
+                      }
+                      return <button className="btn btn-success btn-sm" onClick={(ev) => { ev.preventDefault(); dispatch(enrollUser({ user: currentUser._id, course: c._id })); }} id={`wd-enroll-${c._id}`}>Enroll</button>;
+                    })()}
                     {canEdit && (
                       <>
-                        <Button variant="warning" className="me-2" onClick={(e) => editCourse(e, c)} id="wd-edit-course-click">Edit</Button>
-                        <Button variant="danger" onClick={(event) => { event.preventDefault(); dispatch(deleteCourse(c._id)); }} id="wd-delete-course-click">Delete</Button>
+                        <button className="btn btn-warning btn-sm me-2" onClick={(e) => editCourse(e, c)} id="wd-edit-course-click">Edit</button>
+                        <button className="btn btn-danger btn-sm" onClick={(event) => { event.preventDefault(); dispatch(deleteCourse(c._id)); }} id="wd-delete-course-click">Delete</button>
                       </>
                     )}
-                  </Card.Footer>
-                </Card>
-              </Col>
+                  </div>
+                </div>
+              </div>
             ));
           })()}
-        </Row>
+        </div>
       </div>
     </div>
   );

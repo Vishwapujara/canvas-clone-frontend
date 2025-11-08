@@ -1,19 +1,19 @@
 "use client";
 
 import { useEffect } from "react";
-import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import { useRouter } from "next/navigation";
 import type { RootState } from "../store";
 
 export default function AccountPage() {
-	const router = useRouter();
 	const { currentUser } = useSelector((state: RootState) => state.accountReducer);
+	const router = useRouter();
 
 	useEffect(() => {
-		if (currentUser) {
-			router.push("/Account/Profile");
+		if (!currentUser) {
+			router.replace("/Account/Signin");
 		} else {
-			router.push("/Account/Signin");
+			router.replace("/Account/Profile");
 		}
 	}, [currentUser, router]);
 
