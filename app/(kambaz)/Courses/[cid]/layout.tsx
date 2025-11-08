@@ -6,7 +6,7 @@ import CourseNavigation from "./Navigation";
 import Breadcrumb from "./Breadcrumb";
 import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
-import type { RootState } from "@/lib/redux/store";
+import type { RootState } from "../../store";
 import Offcanvas from "react-bootstrap/Offcanvas";
 
 export default function CoursesLayout({ children }: { children: ReactNode }) {
