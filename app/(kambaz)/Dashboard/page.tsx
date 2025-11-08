@@ -1,13 +1,8 @@
-import nextDynamic from "next/dynamic";
-
+"use client";
 export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 
-/*
-  Server-side wrapper that defers Dashboard rendering to the client.
-  The real Dashboard lives in DashboardClient.tsx (a "use client" component).
-*/
-const DashboardClient = nextDynamic(() => import("./DashboardClient"), { ssr: false });
+import DashboardClient from "./DashboardClient";
 
 export default function Page() {
   return <DashboardClient />;
