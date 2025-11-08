@@ -1,20 +1,10 @@
-"use client";
-import nextDynamic from "next/dynamic";
-
-// CRITICAL: Prevent any static generation
+// Server wrapper: render the client Dashboard component directly.
+// Do NOT export fetchCache/revalidate/generateStaticParams from a server or client file that imports client helpers.
 export const dynamic = "force-dynamic";
-export const fetchCache = "force-no-store";
-export const revalidate = 0;
 
-const DashboardClient = nextDynamic(() => import("./DashboardClient"), {
-  ssr: false,
-  loading: () => (
-    <div className="container-fluid p-4">
-      <h1>Loading Dashboard...</h1>
-    </div>
-  ),
-});
+import DashboardClient from "./DashboardClient";
 
 export default function Page() {
+  // Server component can render the client component directly.
   return <DashboardClient />;
 }
