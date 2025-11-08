@@ -6,11 +6,6 @@ export const dynamic = "force-dynamic";
 export const fetchCache = "force-no-store";
 export const revalidate = 0;
 
-// This disables static generation for this route
-export async function generateStaticParams() {
-  return []; // No static paths
-}
-
 const DashboardClient = nextDynamic(() => import("./DashboardClient"), {
   ssr: false,
   loading: () => (
