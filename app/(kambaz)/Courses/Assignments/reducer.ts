@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { assignments as dbAssignments } from "../../Database";
+import { assignments } from "../../Database";
 
 type Assignment = {
   _id: string;
@@ -17,7 +17,7 @@ type AssignmentsState = {
 };
 
 const initialState: AssignmentsState = {
-  assignments: (dbAssignments as any[]).map((a) => ({
+  assignments: (assignments as any[]).map((a) => ({
     _id: (a._id as string) ?? (a.id as string) ?? new Date().getTime().toString(),
     title: a.title,
     description: a.description,
