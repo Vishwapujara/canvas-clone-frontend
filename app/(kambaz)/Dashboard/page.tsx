@@ -1,3 +1,4 @@
+"use client";
 import nextDynamic from "next/dynamic";
 
 // CRITICAL: Prevent any static generation
