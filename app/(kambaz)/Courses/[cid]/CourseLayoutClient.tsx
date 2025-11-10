@@ -8,6 +8,8 @@ import { useSelector } from "react-redux";
 import { useParams } from "next/navigation";
 import type { RootState } from "../../store";
 import Offcanvas from "react-bootstrap/Offcanvas";
+import Kambaz from "../../page";
+import KambazNavigation from "../../Navigation";
 
 export default function CoursesLayout({ children }: { children: ReactNode }) {
   const params = useParams();
@@ -25,6 +27,7 @@ export default function CoursesLayout({ children }: { children: ReactNode }) {
 
   return (
     <>
+      <KambazNavigation />
       <div id="wd-courses" style={{ marginLeft: `${baseKambazOffset}px` }}>
         {/* Header: hamburger + breadcrumb */}
         <div className="d-flex align-items-center">
