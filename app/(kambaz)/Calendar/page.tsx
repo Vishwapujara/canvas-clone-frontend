@@ -7,7 +7,11 @@ export default function Calendar({ children }: Readonly<{ children: ReactNode }>
   return (
     <div id="wd-kambaz-calendar">
       <KambazNavigation />
-      <div className="wd-main-content-offset" style={{ marginLeft: 0 }}>
+      <div
+        className="wd-main-content-offset"
+        // shift content to the right of the left sidebar; adjust 120px if needed
+        style={{ marginLeft: "120px", padding: "20px" }}
+      >
         <br />
         <h2>Calendar</h2>
         <hr />

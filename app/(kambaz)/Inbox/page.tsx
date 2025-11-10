@@ -8,7 +8,7 @@ export default function Inbox({ children }: Readonly<{ children: ReactNode }>) {
   return (
     <div id="wd-kambaz-inbox">
       <KambazNavigation />
-      <div className="wd-main-content-offset" style={{ marginLeft: 0 }}>
+      <div className="wd-main-content-offset" style={{ marginLeft: "120px", padding: "20px" }}>
         <br />
         <h2>Inbox</h2>
         <hr />
