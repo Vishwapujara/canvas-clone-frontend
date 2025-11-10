@@ -17,11 +17,17 @@ export default function AccountLayoutClient({ children }: Readonly<{ children: R
 
   return (
     <div className="d-flex">
-      {/* <KambazNavigation /> */}
-      <div style={{ marginLeft: "10px" }}>
+      {/* UNCOMMENT THIS LINE */}
+      <KambazNavigation />
+      
+      {/* REMOVE OR COMMENT OUT these lines */}
+      {/* <div style={{ marginLeft: "10px" }}>
         <AccountNavigation activePage={getActivePage()} />
-      </div>
-      <div className="flex-fill p-4" style={{ marginLeft: "250px" }}>
+      </div> */}
+      
+      {/* Keep the content area but adjust margin for sidebar */}
+      <div className="flex-fill p-4" style={{ marginLeft: "110px" }}>
+        <AccountNavigation activePage={getActivePage()} />
         {children}
       </div>
     </div>
