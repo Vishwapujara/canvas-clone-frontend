@@ -32,7 +32,7 @@ export default function AccountNavigation({ activePage }: AccountNavigationProps
   };
 
   return (
-    <div id="wd-account-navigation" className="wd list-group fs-5 rounded-0">
+    <div id="wd-sidebar" className="wd list-group fs-5 rounded-0">
       {links.includes("Signin") && (
         <Link href="/Account/Signin" id="wd-account-signin-link" className={getItemClass("Signin")}>
           <h5>Signin</h5>
