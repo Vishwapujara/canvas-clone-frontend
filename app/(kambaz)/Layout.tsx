@@ -1,6 +1,7 @@
 "use client";
 
 import { ReactNode } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
 import KambazNavigation from "./Navigation";
 import "./KambazNavigation.css";
 import "./styles.css";
