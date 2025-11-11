@@ -12,24 +12,40 @@ const modulesSlice = createSlice({
   reducers: {
     addModule: (state, { payload: module }: any) => {
       const newModule: any = {
-        id: uuidv4(),
-        lessons: [],
+        id: uuidv4(), // Reducer creates the ID
+        lessons: [],  // Reducer creates empty lessons array
         name: module.name,
         course: module.course,
       };
       state.modules = [...state.modules, newModule] as any;
     },
     deleteModule: (state, { payload: moduleId }: any) => {
+      // Filters modules based on the correct 'id' property
       state.modules = state.modules.filter((m: any) => m.id !== moduleId);
     },
     updateModule: (state, { payload: module }: any) => {
+      // Updates module based on the correct 'id' property
       state.modules = state.modules.map((m: any) => (m.id === module.id ? module : m)) as any;
     },
     editModule: (state, { payload: moduleId }: any) => {
+      // Edits module based on the correct 'id' property
       state.modules = state.modules.map((m: any) => (m.id === moduleId ? { ...m, editing: true } : m)) as any;
+    },
+    
+    // ACTION TO DELETE A SPECIFIC LESSON
+    deleteLesson: (state, { payload: { moduleId, lessonId } }: any) => {
+      state.modules = state.modules.map((m: any) => {
+        if (m.id === moduleId) {
+          // Found the module, now filter out the lesson by its 'id'
+          const newLessons = m.lessons.filter((l: any) => l.id !== lessonId);
+          return { ...m, lessons: newLessons };
+        }
+        return m;
+      }) as any;
     },
   },
 });
 
-export const { addModule, deleteModule, updateModule, editModule } = modulesSlice.actions;
+// Export the new deleteLesson action
+export const { addModule, deleteModule, updateModule, editModule, deleteLesson } = modulesSlice.actions;
 export default modulesSlice.reducer;
