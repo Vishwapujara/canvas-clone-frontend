@@ -60,15 +60,24 @@ export default function AssignmentsClient() {
                         Multiple Modules | <b>Due</b> {a.due} | <b>Points</b> {a.maxPoints}
                       </div>
                     </div>
-                    <div>
+                    {/* Container for buttons */}
+                    <div className="d-flex gap-2">
                       {canEdit && (
-                        <Button variant="outline-danger" size="sm" className="ms-2" onClick={() => {
-                          if (confirm('Are you sure you want to delete this assignment?')) {
-                            dispatch(deleteAssignment(a._id));
-                          }
-                        }} id={`wd-delete-assignment-${a._id}`}>
-                          Delete
-                        </Button>
+                        <>
+                          {/* EDIT BUTTON */}
+                          <Link href={`/Courses/${cid}/Assignments/${a._id}`} className="btn btn-outline-primary btn-sm" id={`wd-edit-assignment-${a._id}`}>
+                            Edit
+                          </Link>
+                          
+                          {/* DELETE BUTTON */}
+                          <Button variant="outline-danger" size="sm" onClick={() => {
+                            if (confirm('Are you sure you want to delete this assignment?')) {
+                              dispatch(deleteAssignment(a._id));
+                            }
+                          }} id={`wd-delete-assignment-${a._id}`}>
+                            Delete
+                          </Button>
+                        </>
                       )}
                     </div>
                   </ListGroupItem>
