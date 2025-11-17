@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { assignments } from "../../../../../kambaz-node-server-app/Kambaz/Database";
+
+// DO NOT import from the server database
 
 type Assignment = {
   _id: string;
@@ -14,25 +15,32 @@ type Assignment = {
 
 type AssignmentsState = {
   assignments: Assignment[];
+  assignment: Partial<Assignment>;
 };
 
 const initialState: AssignmentsState = {
-  assignments: (assignments as any[]).map((a) => ({
-    _id: (a._id as string) ?? (a.id as string) ?? new Date().getTime().toString(),
-    title: a.title,
-    description: a.description,
-    course: a.course,
-    due: a.due ?? null,
-    available: a.available ?? null,
-    until: a.until ?? null,
-    maxPoints: a.maxPoints ?? 100,
-  })),
+  assignments: [], // start empty; will be populated from API via setAssignments
+  assignment: {
+    _id: "",
+    title: "",
+    description: "",
+    course: "",
+    due: null,
+    available: null,
+    until: null,
+    maxPoints: 100,
+  },
 };
 
 const assignmentsSlice = createSlice({
   name: "assignments",
   initialState,
   reducers: {
+    // Populate assignments after fetching from server
+    setAssignments: (state, action: PayloadAction<Assignment[]>) => {
+      state.assignments = action.payload;
+    },
+
     addAssignment: (state, action: PayloadAction<Omit<Assignment, "_id">>) => {
       const assignment = action.payload;
       const newAssignment: Assignment = {
@@ -47,19 +55,18 @@ const assignmentsSlice = createSlice({
       };
       state.assignments = [...state.assignments, newAssignment];
     },
+
     deleteAssignment: (state, action: PayloadAction<string>) => {
       const assignmentId = action.payload;
       state.assignments = state.assignments.filter((a) => a._id !== assignmentId);
     },
+
     updateAssignment: (state, action: PayloadAction<Assignment>) => {
       const assignment = action.payload;
       state.assignments = state.assignments.map((a) => (a._id === assignment._id ? assignment : a));
     },
-    setAssignments: (state, action: PayloadAction<Assignment[]>) => {
-      state.assignments = action.payload;
-    },
   },
 });
 
-export const { addAssignment, deleteAssignment, updateAssignment, setAssignments } = assignmentsSlice.actions;
+export const { setAssignments, addAssignment, deleteAssignment, updateAssignment } = assignmentsSlice.actions;
 export default assignmentsSlice.reducer;
