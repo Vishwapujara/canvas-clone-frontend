@@ -521,21 +521,11 @@ export default function DashboardClient() {
                     <Card.Footer className="d-flex justify-content-end gap-2">
 
                       {currentUser && (
-                      // 
-                      // [FIX 2]: Your buttons MUST call the server-aware handlers
-                      // (handleEnroll, handleUnenroll) to meet 5.3.7 requirements.
-                      //
                         c.isEnrolled
                           ? <Button variant="outline-danger" size="sm" onClick={(ev) => { ev.preventDefault(); handleUnenroll(c._id); }} id={`wd-unenroll-${c._id}`}>Unenroll</Button>
                           : <Button variant="success" size="sm" onClick={(ev) => { ev.preventDefault(); handleEnroll(c._id); }} id={`wd-enroll-${c._id}`}>Enroll</Button>
                       )}
-                      // 
-                      // [FIX 3]: I also updated your "isEnrolled" logic to use the new flag
-                      // `c.isEnrolled` which is set in the `fetchCourses` function.
-                      // Your original logic was reading from a separate `enrollments`
-                      // state which would not update correctly when showing "All Courses".
-                      // This new way is much more reliable.
-                      //
+                    
 
                       {canEdit && (
                         <>
