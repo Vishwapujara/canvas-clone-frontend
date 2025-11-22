@@ -21,19 +21,23 @@ export default function PathParameters() {
      href={`${HTTP_SERVER}/lab5/calculator?operation=add&a=${a}&b=${b}`}>
     Add {a} + {b}
   </a>
+  <br />
   <a id="wd-query-parameter-subtract"
      href={`${HTTP_SERVER}/lab5/calculator?operation=subtract&a=${a}&b=${b}`}>
     Substract {a} - {b}
   </a>
+  <br />
   {/* create additional links to test multiply and divide. use IDs starting with wd-query-parameter- */}
   <a id="wd-query-parameter-multiply"
      href={`${HTTP_SERVER}/lab5/calculator?operation=multiply&a=${a}&b=${b}`}>
     Multiply {a} * {b}
   </a>
+  <br />
   <a id="wd-query-parameter-divide"
      href={`${HTTP_SERVER}/lab5/calculator?operation=divide&a=${a}&b=${b}`}>
     Divide {a} / {b}
   </a>
+  <br />
   <hr />
 </div>
 
