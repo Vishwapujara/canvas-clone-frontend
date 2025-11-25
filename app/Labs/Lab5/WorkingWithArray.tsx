@@ -32,7 +32,8 @@ export default function WorkingWithArrays() {
       </a><hr />
 
       <h3>Creating new Items in an Array</h3>
-      <a id="wd-retrieve-completed-todos" className="btn btn-primary"
+      {/* FIX: Renamed the duplicated ID */}
+      <a id="wd-create-todo-link" className="btn btn-primary" 
         href={`${HTTP_SERVER}/lab5/todos/create`}>
         Create Todo
       </a><hr />

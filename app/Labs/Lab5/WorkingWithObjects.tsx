@@ -204,10 +204,6 @@ export default function WorkingWithObjects() {
           <pre>{moduleObj ? JSON.stringify(moduleObj, null, 2) : "Not loaded"}</pre>
         </div>
       </section>
-
-      <p className="text-muted">
-        Note: these demo routes use GET path parameters to mutate server state for lab/testing. In production, use proper HTTP verbs (PUT/POST) and body payloads.
-      </p>
     </div>
   );
 }
