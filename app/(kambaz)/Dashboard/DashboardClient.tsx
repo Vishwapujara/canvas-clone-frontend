@@ -466,10 +466,10 @@ export default function DashboardClient() {
         }}
       >
         <div style={{ textAlign: "center" }}>
-          <div className="spinner-border mb-3" role="status" style={{ width: "50px", height: "50px" }}>
+          <div className="spinner-border mb-3" role="status" style={{ width: "50px", height: "50px", color: "#dc3545" }}>
             <span className="visually-hidden">Loading...</span>
           </div>
-          <p className="text-muted">Restoring your session...</p>
+          <p className="text-muted">Loading dashboard...</p>
         </div>
       </div>
     );
