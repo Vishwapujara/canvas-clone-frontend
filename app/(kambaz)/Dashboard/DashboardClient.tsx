@@ -329,8 +329,7 @@ export default function DashboardClient() {
     description: "New Description",
   });
 
-  // Only redirect if user explicitly signs out (currentUser goes from having value to null)
-  // But NOT on initial load when currentUser might be null before Session fetches
+  // Only redirect if user explicitly signs out
   useEffect(() => {
     if (currentUser === null && hasCheckedSession.current) {
       console.warn("⚠️ Dashboard: User signed out, redirecting to signin");
@@ -340,23 +339,51 @@ export default function DashboardClient() {
     }
   }, [currentUser, router]);
 
+  // ✅ UPDATED: Immediate enroll with optimistic update
   const handleEnroll = async (courseId: string) => {
     if (!currentUser) return;
     try {
+      // Immediately update Redux state (optimistic update)
+      const updatedCourses = courses.map((c: any) =>
+        c._id === courseId ? { ...c, isEnrolled: true } : c
+      );
+      dispatch(setCourses(updatedCourses));
+      
+      // Then call API
       await accountClient.enrollUserInCourse(currentUser._id, courseId);
       dispatch(enrollUser({ user: currentUser._id, course: courseId }));
+      console.log("✅ Enrolled in course:", courseId);
     } catch (err) {
       console.error("Failed to enroll:", err);
+      // Revert on error
+      const revertedCourses = courses.map((c: any) =>
+        c._id === courseId ? { ...c, isEnrolled: false } : c
+      );
+      dispatch(setCourses(revertedCourses));
     }
   };
 
+  // ✅ UPDATED: Immediate unenroll with optimistic update
   const handleUnenroll = async (courseId: string) => {
     if (!currentUser) return;
     try {
+      // Immediately update Redux state (optimistic update)
+      const updatedCourses = courses.map((c: any) =>
+        c._id === courseId ? { ...c, isEnrolled: false } : c
+      );
+      dispatch(setCourses(updatedCourses));
+      
+      // Then call API
       await accountClient.unenrollUserFromCourse(currentUser._id, courseId);
       dispatch(unenrollUser({ user: currentUser._id, course: courseId }));
+      console.log("✅ Unenrolled from course:", courseId);
     } catch (err) {
       console.error("Failed to unenroll:", err);
+      // Revert on error
+      const revertedCourses = courses.map((c: any) =>
+        c._id === courseId ? { ...c, isEnrolled: true } : c
+      );
+      dispatch(setCourses(revertedCourses));
     }
   };
 
@@ -393,14 +420,19 @@ export default function DashboardClient() {
     }
   }, [currentUser, showAll]);
 
+  // ✅ UPDATED: Default enroll when adding new course
   const onAddCourse = async () => {
     try {
       const newCourse = await client.createCourse(course);
-      dispatch(addNewCourse(newCourse));
+      // Add course with isEnrolled: true by default
+      const courseWithEnrollment = { ...newCourse, isEnrolled: true };
+      dispatch(addNewCourse(courseWithEnrollment));
       
       if (currentUser && currentUser._id) {
         dispatch(enrollUser({ user: currentUser._id, course: newCourse._id }));
       }
+
+      console.log("✅ Course added and enrolled:", newCourse.name);
 
       setCourse({
         _id: "0",
@@ -412,7 +444,7 @@ export default function DashboardClient() {
         description: "New Description",
       });
     } catch (err) {
-      console.error(err);
+      console.error("Failed to add course:", err);
     }
   };
 
@@ -420,8 +452,9 @@ export default function DashboardClient() {
     try {
       await client.deleteCourse(courseId);
       dispatch(deleteCourse(courseId));
+      console.log("✅ Course deleted:", courseId);
     } catch (err) {
-      console.error(err);
+      console.error("Failed to delete course:", err);
     }
   };
 
@@ -429,8 +462,9 @@ export default function DashboardClient() {
     try {
       await client.updateCourse(course);
       dispatch(updateCourse(course));
+      console.log("✅ Course updated:", course.name);
     } catch (err) {
-      console.error(err);
+      console.error("Failed to update course:", err);
     }
   };
 
