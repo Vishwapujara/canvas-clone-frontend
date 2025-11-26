@@ -115,8 +115,7 @@ export default function AssignmentsClient() {
   const { cid } = useParams() as { cid?: string };
   
   // The assignments will now populate after the API call finishes
-  const assignments = useSelector((state: RootState) => (state.assignmentsReducer as any).assignments) || [];
-  
+const assignments = useSelector((state: RootState) => (state.assignmentsReducer as any).assignments) || [];  
   const { currentUser } = useSelector((state: RootState) => state.accountReducer);
   const dispatch = useDispatch();
   const [search, setSearch] = useState("");
@@ -147,8 +146,16 @@ export default function AssignmentsClient() {
 
   // Run the fetch function only once when the component mounts (or when cid changes)
   useEffect(() => {
-    fetchAssignments();
-  }, [cid]);
+    // ✅ THE FIX: Only call fetchAssignments if the local Redux store is currently empty.
+    // If the store already has assignments, it means we either just came from the editor 
+    // (with fresh data) or successfully loaded them before.
+    if (cid && assignments.length === 0) {
+      fetchAssignments();
+    } else {
+      // If we have data, we can stop the loading spinner instantly.
+      setLoading(false);
+    }
+  }, [cid, assignments.length]);
   
   // Your local filtering logic is correct since the store is now populated.
   const courseAssignments = assignments
