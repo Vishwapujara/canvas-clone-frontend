@@ -6,8 +6,9 @@ import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import type { RootState, AppDispatch } from "../../../../store";
 import { addAssignment, updateAssignment } from "../../../Assignments/reducer";
+import * as client from "../../../Assignments/client"; // new: call server API
 
-export default function AssignmentEditor() {
+export default function AssignmentClient() {
   const { cid, aid } = useParams() as { cid?: string; aid?: string };
   const assignmentsFromStore = useSelector((state: RootState) => (state.assignmentsReducer as any).assignments) || [];
   const assignment = assignmentsFromStore.find((a: any) => a._id === aid) ?? null;
@@ -21,6 +22,7 @@ export default function AssignmentEditor() {
   const [due, setDue] = useState<string>(assignment?.due ?? "");
   const [available, setAvailable] = useState<string>(assignment?.available ?? "");
   const [until, setUntil] = useState<string>(assignment?.until ?? "");
+  const [isSaving, setIsSaving] = useState(false);
 
   useEffect(() => {
     // redirect users without edit permissions back to the assignments list
@@ -39,20 +41,29 @@ export default function AssignmentEditor() {
     }
   }, [assignment, canEdit, cid, router]);
 
-  const save = () => {
-    if (aid === "new") {
-      dispatch(addAssignment({ title, description, maxPoints, due, available, until, course: cid }));
-    } else if (aid) {
-      // aid can be undefined in the route params typing; guard ensures it's a string here
-      const updatedAssignment = { _id: aid, title, description, maxPoints, due, available, until, course: cid };
-      dispatch(updateAssignment(updatedAssignment as any));
-    } else {
-      // Shouldn't happen - if no aid available, just navigate back
+  // Updated save: call server API and then update Redux with server response
+  const save = async () => {
+    setIsSaving(true);
+    try {
+      if (aid === "new") {
+        const newAssignmentData = { title, description, maxPoints, due, available, until, course: cid };
+        const createdAssignment = await client.createAssignmentForCourse(cid!, newAssignmentData);
+        dispatch(addAssignment(createdAssignment));
+      } else if (aid) {
+        const updatedAssignmentData = { _id: aid, title, description, maxPoints, due, available, until, course: cid };
+        const savedAssignment = await client.updateAssignment(updatedAssignmentData);
+        dispatch(updateAssignment(savedAssignment));
+      } else {
+        router.push(`/Courses/${cid}/Assignments`);
+        return;
+      }
       router.push(`/Courses/${cid}/Assignments`);
-      return;
+    } catch (error) {
+      console.error("Error saving assignment:", error);
+      alert("Failed to save assignment. Please try again.");
+    } finally {
+      setIsSaving(false);
     }
-    // navigate back
-    router.push(`/Courses/${cid}/Assignments`);
   };
 
   return (
@@ -129,8 +140,12 @@ export default function AssignmentEditor() {
             </Row>
 
             <div className="mt-3">
-              <Button variant="secondary" className="me-2" onClick={() => { router.push(`/Courses/${cid}/Assignments`); }}>Cancel</Button>
-              <Button variant="primary" onClick={save}>Save</Button>
+              <Button variant="secondary" className="me-2" onClick={() => { router.push(`/Courses/${cid}/Assignments`); }} disabled={isSaving}>
+                Cancel
+              </Button>
+              <Button variant="primary" onClick={save} disabled={isSaving}>
+                {isSaving ? "Saving..." : "Save"}
+              </Button>
             </div>
           </Card>
         </Col>
