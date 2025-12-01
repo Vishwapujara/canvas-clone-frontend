@@ -2,9 +2,19 @@
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { FormControl } from "react-bootstrap";
+// NOTE: Assuming the path to PeopleTableClient is correct relative to this file
 import PeopleTableClient from "../../Courses/[cid]/People/Table/PeopleTableClient";
 import * as client from "../client";
 import { FaPlus } from "react-icons/fa6"; // Using FaPlus from fa6 for the button icon
+
+// Define the available roles for type safety and easy management
+const ROLES = {
+  STUDENT: "Student",
+  TA: "Assistant",
+  FACULTY: "Faculty",
+  ADMIN: "Administrator",
+  USER: "General User",
+} as const;
 
 export default function Users() {
   const [users, setUsers] = useState<any[]>([]);
@@ -22,8 +32,11 @@ export default function Users() {
     }
   };
 
-  // NEW: Function to create a new user (as per instructions)
+  // Function to create a new user (retained)
   const createUser = async () => {
+    // Determine a default role for the new user, e.g., 'STUDENT'
+    const defaultRole = "STUDENT";
+    
     // 1. Send the new user payload to the server
     const user = await client.createUser({
       firstName: "New",
@@ -32,14 +45,13 @@ export default function Users() {
       password: "password123",
       email: `email${users.length + 1}@neu.edu`,
       section: "S101",
-      role: "STUDENT",
+      role: defaultRole, // Use a default role
     });
 
     // 2. Optimistically update the local list
     setUsers([...users, user]);
     
     // 3. Call fetchUsers to ensure the table reflects the actual database state
-    // (especially important if the server sets additional default fields)
     fetchUsers(); 
   };
 
@@ -79,7 +91,6 @@ export default function Users() {
 
   // Fetch all users on initial load (retained)
   useEffect(() => {
-    // Only fetch if a filter isn't already active (or for initial population)
     if (!role && !name) {
       fetchUsers();
     }
@@ -88,7 +99,7 @@ export default function Users() {
 
   return (
     <div>
-      {/* NEW: Add Users button */}
+      {/* Add Users button (retained) */}
       <button 
         onClick={createUser} 
         className="float-end btn btn-danger wd-add-people"
@@ -97,10 +108,11 @@ export default function Users() {
         Users
       </button>
 
-      <h3>Users</h3>
+      <h3>Users Management 👥</h3>
+      <hr />
       <div className="d-flex mb-3 align-items-center">
         
-        {/* Filter by Name Input */}
+        {/* Filter by Name Input (retained) */}
         <FormControl 
           onChange={(e) => filterUsersByName(e.target.value)} 
           placeholder="Search people by name"
@@ -108,18 +120,19 @@ export default function Users() {
           value={name}
         />
         
-        {/* Filter by Role Dropdown */}
+        {/* Filter by Role Dropdown - UPDATED HERE */}
         <select 
           value={role} 
           onChange={(e) => filterUsersByRole(e.target.value)}
           className="form-select float-start w-25 wd-select-role" 
         >
           <option value="">All Roles</option>
-          <option value="STUDENT">Students</option>
-          <option value="TA">Assistants</option>
-          <option value="FACULTY">Faculty</option>
-          <option value="ADMIN">Administrators</option>
-          <option value="USER">General Users</option>
+          {/* Dynamically create options from the ROLES object */}
+          {Object.entries(ROLES).map(([roleKey, roleLabel]) => (
+            <option key={roleKey} value={roleKey}>
+              {roleLabel}
+            </option>
+          ))}
         </select>
       </div>
 
