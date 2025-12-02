@@ -35,6 +35,6 @@ export default function Labs() {
 
      <br />
 
-  <a id="wd-github" href="https://github.com/Vishwapujara/kambaz-next-js" target="_blank" rel="noreferrer">Github Repository</a>
+  <a id="wd-github" href="https://github.com/prachitapatel2310/kanbas-next-js" target="_blank" rel="noreferrer">Github Repository</a>
    </div>
 );}
