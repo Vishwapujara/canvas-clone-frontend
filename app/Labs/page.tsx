@@ -4,7 +4,7 @@ export default function Labs() {
    <div id="wd-labs">
      <h1>Labs</h1>
      <hr />
-     <h2>Vishwa Pujara - FALL 2025</h2>
+     <h2>Prachita Patel - FALL 2025</h2>
      <hr />
      <ul>
        <li>

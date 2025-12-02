@@ -35,60 +35,93 @@ export default function SigninClient() {
   };
 
   return (
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", minHeight: "100vh", width: "100%", marginTop: "-100px" }}>
-      <div id="wd-signin-screen" className="card shadow-sm p-4" style={{ width: 380 }}>
-        <h1 className="text-center mb-4"><b>Sign in</b></h1>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "flex-start",
+        minHeight: "100vh",
+        width: "100%",
+        paddingTop: "40px",
+        paddingLeft: "40px",
+      }}
+    >
+      <div
+        id="wd-signin-screen"
+        className="card shadow-sm p-4"
+        style={{ width: 380 }}
+      >
+        <h2 className="mb-4">
+          <b>Sign In</b>
+        </h2>
 
         <FormControl
           value={credentials.username}
-          onChange={(e) => setCredentials({ ...credentials, username: (e.target as HTMLInputElement).value })}
+          onChange={(e) =>
+            setCredentials({
+              ...credentials,
+              username: (e.target as HTMLInputElement).value,
+            })
+          }
           className="mb-3"
-          placeholder="username"
+          placeholder="Username"
           id="wd-username"
         />
 
         <FormControl
           value={credentials.password}
-          onChange={(e) => setCredentials({ ...credentials, password: (e.target as HTMLInputElement).value })}
+          onChange={(e) =>
+            setCredentials({
+              ...credentials,
+              password: (e.target as HTMLInputElement).value,
+            })
+          }
           className="mb-3"
-          placeholder="password"
+          placeholder="Password"
           type="password"
           id="wd-password"
         />
 
-        {error && <div className="alert alert-danger" role="alert">{error}</div>}
+        {error && (
+          <div className="alert alert-danger py-2" role="alert">
+            {error}
+          </div>
+        )}
 
-        <Button onClick={signin} id="wd-signin-btn" className="w-100 mb-2">
-          Sign in
+        <Button
+          onClick={signin}
+          id="wd-signin-btn"
+          className="w-100 mb-3"
+          variant="primary"
+        >
+          Sign In
         </Button>
 
-        <Link href="/Account/Signup" id="wd-signup-link" className="btn btn-outline-primary w-100">
-          Sign up
+        <Link
+          href="/Account/Signup"
+          id="wd-signup-link"
+          className="btn btn-outline-secondary w-100 mb-3"
+        >
+          Create Account
         </Link>
 
-        <p>
-          username: tony123
-          <br />
-          password: pass123
-          <br />
-          role: student
-        </p>
+        <div className="text-muted small">
+          <p className="mb-2">
+            <b>Student Login:</b>
+            <br />
+            Username: <code>steve345</code>
+            <br />
+            Password: <code>pass345</code>
+          </p>
 
-        <p>
-          username: alice890
-          <br />
-          password: pass890
-          <br />
-          role: instructor
-        </p>
-
-        <p>
-          username: vishwa001
-          <br />
-          password: pass001
-          <br />
-          role: admin
-        </p>
+          <p className="mb-0">
+            <b>Teacher Login:</b>
+            <br />
+            Username: <code>maya1002</code>
+            <br />
+            Password: <code>pass1002</code>
+          </p>
+        </div>
       </div>
     </div>
   );
